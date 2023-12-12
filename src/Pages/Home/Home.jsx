@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 const Home = () => {
   return (
     <header>
-        Home
+        
     </header>
   );
 };
