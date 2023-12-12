@@ -10,14 +10,16 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 const Root = () => {
   return (
-    <>
-      <Typography noWrap variant="h1" component="main">
+    <div>
+      <Typography
+        color="error.main"
+        variant="h4"
+      >
         A.M.G
-        asdlkasdlkasdlkasdlkasdlkasdlkasdlkasdlkasdlkasdlkasdlkasdlkasdlkasdlkasdlkasdlkasdlkasdlkasdlkasdlkasdlk
       </Typography>
-      <h1>welcome</h1>
-    </>
-    //   <Outlet />
+
+      <Outlet />
+    </div>
   );
 };
 
