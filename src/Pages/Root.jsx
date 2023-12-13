@@ -1,49 +1,18 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
-import { Avatar, Link, Typography, Toolbar, AppBar } from "@mui/material";
+import Appbar from "../comp/Appbar";
+import NavDrawer from "../comp/Drawer";
+
+
 
 const Root = () => {
+  const drawerWidth = 240;
+
   return (
     <div>
-      <AppBar position="static">
-        <Toolbar>
-          <Link
-            sx={{
-              flexGrow: 1,
-              "&:hover": { fontSize: "17px", transition: ".5s ease" },
-            }}
-            underline="none"
-            href="/"
-            color="inherit"
-          >
-            My Expenses
-          </Link>
+      <Appbar drawerWidth={drawerWidth} />
 
-          <Typography mr={2} color="primart.main">
-            Ahmed M Gamal
-          </Typography>
-
-          <Avatar alt="Ahmed" src="./imgs/avatar.jpg" />
-        </Toolbar>
-      </AppBar>
-      {/* <Typography color="error.main" variant="h4">
-        A.M.G
-      </Typography>
-
-      <Button
-        sx={{ mr: "auto", ml: "auto", display: "flex" }}
-        startIcon={<DeleteIcon />}
-        variant="contained"
-        color="primary"
-      >
-        DELETE
-      </Button>
-
-      <IconButton color="info">
-        <MenuIcon fontSize="small" />
-        <MenuIcon fontSize="medium" />
-        <MenuIcon fontSize="larg" />
-      </IconButton> */}
+      <NavDrawer drawerWidth={drawerWidth} />
+      
 
       <Outlet />
     </div>
