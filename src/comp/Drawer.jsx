@@ -1,4 +1,11 @@
-import { Toolbar, Drawer, Divider } from "@mui/material";
+import {
+  Toolbar,
+  Drawer,
+  Divider,
+  Button,
+  useTheme,
+  IconButton,
+} from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -10,10 +17,16 @@ import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Link, useNavigate } from "react-router-dom";
-import { PartyModeSharp } from "@mui/icons-material";
+import {
+  Brightness4,
+  Brightness7,
+  NfcSharp,
+  PartyModeSharp,
+} from "@mui/icons-material";
 
-const NavDrawer = ({ drawerWidth }) => {
+const NavDrawer = ({ drawerWidth, setMyMode }) => {
   const navigate = useNavigate();
+  const theme = useTheme();
   return (
     <div>
       <Drawer
@@ -28,14 +41,42 @@ const NavDrawer = ({ drawerWidth }) => {
         variant="permanent"
         anchor="left"
       >
-        <Toolbar />
+        {/* <Button
+          // @ts-ignore
+          variant="conained"
+          sx={{ backgroundColor: "orange" }}
+          onClick={() => {
+            setMyMode(
+              theme.palette.mode === "light" ? "dark" : "light"
+            );
+          }}
+        >
+          Dark
+        </Button> */}
+
+
+        <List>
+        <ListItem sx={{mb: 2, display: "flex", justifyContent: "center"}} disablePadding>
+        <IconButton
+        size="small"
+          onClick={() => {
+            setMyMode(theme.palette.mode === "light" ? "dark" : "light");
+          }}
+          color="inherit"
+        >
+          {theme.palette.mode === "dark" ? <Brightness7 sx={{color: "orange"}} /> : <Brightness4 />}
+        </IconButton>
+        </ListItem>
 
         <Divider />
 
-        <List>
           {/* Home Item */}
           <ListItem disablePadding>
-            <ListItemButton onClick={() => {navigate("/")}}>
+            <ListItemButton
+              onClick={() => {
+                navigate("/");
+              }}
+            >
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
@@ -46,7 +87,11 @@ const NavDrawer = ({ drawerWidth }) => {
 
           {/* Create Item */}
           <ListItem disablePadding>
-            <ListItemButton onClick={() => {navigate("/create")}}>
+            <ListItemButton
+              onClick={() => {
+                navigate("/create");
+              }}
+            >
               <ListItemIcon>
                 <CreateIcon />
               </ListItemIcon>
