@@ -1,30 +1,29 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
-import MenuIcon from "@mui/icons-material/Menu";
-import {Avatar, Link} from "@mui/material"
-
+import { Avatar, Link, Typography, Toolbar, AppBar } from "@mui/material";
 
 const Root = () => {
   return (
     <div>
       <AppBar position="static">
-
         <Toolbar>
+          <Link
+            sx={{
+              flexGrow: 1,
+              "&:hover": { fontSize: "17px", transition: ".5s ease" },
+            }}
+            underline="none"
+            href="/"
+            color="inherit"
+          >
+            My Expenses
+          </Link>
 
+          <Typography mr={2} color="primart.main">
+            Ahmed M Gamal
+          </Typography>
 
-          <Link underline="none" href="/" color="inherit" sx={{ flexGrow: 1 }}>My Expenses</Link>
-
-          <Typography sx={{mr:"10px"}} variant="p" color="primart.main">Ahmed M Gamal</Typography>
-
-          <Avatar alt="Ahmed" src="/src/Pages/avatar.jpg" />
-
+          <Avatar alt="Ahmed" src="./imgs/avatar.jpg" />
         </Toolbar>
       </AppBar>
       {/* <Typography color="error.main" variant="h4">
