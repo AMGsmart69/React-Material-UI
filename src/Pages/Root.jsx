@@ -2,8 +2,8 @@ import { Outlet } from "react-router-dom";
 import Appbar from "../comp/Appbar";
 import NavDrawer from "../comp/Drawer";
 import { Box, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { useState } from "react";
-import { grey } from "@mui/material/colors";
+import { useMemo, useState } from "react";
+import getDesignTokens from "style/MyTheme";
 
 const Root = () => {
   const drawerWidth = 240;
@@ -16,31 +16,13 @@ const Root = () => {
       : "dark"
   );
 
-  const darkTheme = createTheme({
-    palette: {
-      // @ts-ignore
-      mode,
-      ...(mode === "light"
-        ? {
-            // palette values for light mode
-            AMGColor: {
-              main: grey[300],
-            },
-          }
-        : {
-            // palette values for dark mode
-            AMGColor: {
-              main: grey[800],
-            },
-          }),
-    },
-  });
-
   const [noneOrblock, setNoneOrblock] = useState("none");
   const [drawerType, setDrawerType] = useState("permanent");
 
+  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <Appbar
         setDrawerType={setDrawerType}

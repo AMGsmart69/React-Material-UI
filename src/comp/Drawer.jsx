@@ -20,9 +20,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Brightness4,
   Brightness7,
+  Create,
+  Home,
   NfcSharp,
   PartyModeSharp,
 } from "@mui/icons-material";
+import Settings from "@mui/icons-material/Settings";
 
 const NavDrawer = ({
   drawerWidth,
@@ -35,6 +38,13 @@ const NavDrawer = ({
   const navigate = useNavigate();
   const theme = useTheme();
   const currentLoc = useLocation();
+
+  const myList = [
+    { text: "Home", icon: <Home />, path: "/" },
+    { text: "Create", icon: <CreateIcon />, path: "/create" },
+    { text: "Profile", icon: <PersonIcon />, path: "/profile" },
+    { text: "Settings", icon: <SettingsIcon />, path: "/settings" },
+  ];
 
   return (
     <div>
@@ -82,77 +92,31 @@ const NavDrawer = ({
 
           <Divider />
 
-          {/* Home Item */}
-          <ListItem
-            sx={{
-              backgroundColor:
-                // @ts-ignore
-                currentLoc.pathname === "/"
-                  ? // @ts-ignore
-                    theme.palette.AMGColor.main
-                  : null,
-            }}
-            disablePadding
-          >
-            <ListItemButton
-              onClick={() => {
-                navigate("/");
-              }}
-            >
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
+          {myList.map((item) => {
+            return (
+              <ListItem
+                sx={{
+                  backgroundColor:
+                    // @ts-ignore
+                    currentLoc.pathname === item.path
+                      ? // @ts-ignore
+                        theme.palette.AMGColor.main
+                      : null,
+                }}
+                disablePadding
+              >
+                <ListItemButton
+                  onClick={() => {
+                    navigate(item.path);
+                  }}
+                >
+                  <ListItemIcon>{item.icon}</ListItemIcon>
 
-              <ListItemText primary="Home" />
-            </ListItemButton>
-          </ListItem>
-
-          {/* Create Item */}
-          <ListItem
-            sx={{
-              backgroundColor:
-                // @ts-ignore
-                currentLoc.pathname === "/create"
-                  ? // @ts-ignore
-                    theme.palette.AMGColor.main
-                  : null,
-            }}
-            disablePadding
-          >
-            <ListItemButton
-              onClick={() => {
-                navigate("/create");
-              }}
-            >
-              <ListItemIcon>
-                <CreateIcon />
-              </ListItemIcon>
-
-              <ListItemText primary="Create" />
-            </ListItemButton>
-          </ListItem>
-
-          {/* Profile Item */}
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <PersonIcon />
-              </ListItemIcon>
-
-              <ListItemText primary="Profile" />
-            </ListItemButton>
-          </ListItem>
-
-          {/* Settings Item */}
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <SettingsIcon />
-              </ListItemIcon>
-
-              <ListItemText primary="Settings" />
-            </ListItemButton>
-          </ListItem>
+                  <ListItemText primary={item.text} />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
 
           {/* Logout Item */}
           <ListItem disablePadding>
