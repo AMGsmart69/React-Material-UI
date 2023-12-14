@@ -3,20 +3,42 @@ import Appbar from "../comp/Appbar";
 import NavDrawer from "../comp/Drawer";
 import { Box, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { useState } from "react";
+import { grey } from "@mui/material/colors";
 
 const Root = () => {
   const drawerWidth = 240;
 
-  const [myMode, setMyMode] = useState("dark")
+  const [mode, setMyMode] = useState(
+    localStorage.getItem("theme") === null
+      ? "light"
+      : localStorage.getItem("theme") === "light"
+      ? "light"
+      : "dark"
+  );
+
   const darkTheme = createTheme({
     palette: {
       // @ts-ignore
-      mode: myMode,
+      mode,
+      ...(mode === "light"
+        ? {
+            // palette values for light mode
+            AMGColor: {
+              main: grey[300]
+            }
+          }
+        : {
+            // palette values for dark mode
+            AMGColor: {
+              main: grey[800]
+            }
+          }),
     },
   });
+
   return (
-<ThemeProvider theme={darkTheme}>
-<CssBaseline />
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
       <Appbar drawerWidth={drawerWidth} />
 
       <NavDrawer setMyMode={setMyMode} drawerWidth={drawerWidth} />
@@ -32,8 +54,7 @@ const Root = () => {
       >
         <Outlet />
       </Box>
-</ThemeProvider>    
-    
+    </ThemeProvider>
   );
 };
 

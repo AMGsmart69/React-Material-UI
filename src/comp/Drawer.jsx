@@ -16,7 +16,7 @@ import CreateIcon from "@mui/icons-material/Create";
 import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Brightness4,
   Brightness7,
@@ -27,6 +27,8 @@ import {
 const NavDrawer = ({ drawerWidth, setMyMode }) => {
   const navigate = useNavigate();
   const theme = useTheme();
+  const currentLoc = useLocation();
+
   return (
     <div>
       <Drawer
@@ -41,37 +43,41 @@ const NavDrawer = ({ drawerWidth, setMyMode }) => {
         variant="permanent"
         anchor="left"
       >
-        {/* <Button
-          // @ts-ignore
-          variant="conained"
-          sx={{ backgroundColor: "orange" }}
-          onClick={() => {
-            setMyMode(
-              theme.palette.mode === "light" ? "dark" : "light"
-            );
-          }}
-        >
-          Dark
-        </Button> */}
-
-
         <List>
-        <ListItem sx={{mb: 2, display: "flex", justifyContent: "center"}} disablePadding>
-        <IconButton
-        size="small"
-          onClick={() => {
-            setMyMode(theme.palette.mode === "light" ? "dark" : "light");
-          }}
-          color="inherit"
-        >
-          {theme.palette.mode === "dark" ? <Brightness7 sx={{color: "orange"}} /> : <Brightness4 />}
-        </IconButton>
-        </ListItem>
+          <ListItem
+            sx={{ mb: 2, display: "flex", justifyContent: "center" }}
+            disablePadding
+          >
+            <IconButton
+              size="small"
+              onClick={() => {
+                localStorage.setItem(
+                  "theme",
+                  theme.palette.mode === "light" ? "dark" : "light"
+                );
+                setMyMode(theme.palette.mode === "light" ? "dark" : "light");
+              }}
+              color="inherit"
+            >
+              {theme.palette.mode === "dark" ? (
+                <Brightness7 sx={{ color: "orange" }} />
+              ) : (
+                <Brightness4 />
+              )}
+            </IconButton>
+          </ListItem>
 
-        <Divider />
+          <Divider />
 
           {/* Home Item */}
-          <ListItem disablePadding>
+          <ListItem
+            sx={{
+              backgroundColor:
+                // @ts-ignore
+                currentLoc.pathname === "/" ? theme.palette.AMGColor.main : null,
+            }}
+            disablePadding
+          >
             <ListItemButton
               onClick={() => {
                 navigate("/");
@@ -86,7 +92,14 @@ const NavDrawer = ({ drawerWidth, setMyMode }) => {
           </ListItem>
 
           {/* Create Item */}
-          <ListItem disablePadding>
+          <ListItem
+            sx={{
+              backgroundColor:
+                // @ts-ignore
+                currentLoc.pathname === "/create" ? theme.palette.AMGColor.main : null,
+            }}
+            disablePadding
+          >
             <ListItemButton
               onClick={() => {
                 navigate("/create");
