@@ -36,17 +36,18 @@ const Root = () => {
     },
   });
 
+  const [noneOrblock, setNoneOrblock] = useState("none");
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Appbar drawerWidth={drawerWidth} />
+      <Appbar setNoneOrblock={setNoneOrblock} drawerWidth={drawerWidth} />
 
-      <NavDrawer setMyMode={setMyMode} drawerWidth={drawerWidth} />
+      <NavDrawer noneOrblock={noneOrblock} setMyMode={setMyMode} drawerWidth={drawerWidth} />
 
       <Box
         component="main"
         sx={{
-          ml: `${drawerWidth}px`,
+          ml: {sm: `${drawerWidth}px`},
           display: "flex",
           justifyContent: "center",
           mt: "66px",

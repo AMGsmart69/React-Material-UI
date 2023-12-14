@@ -24,7 +24,7 @@ import {
   PartyModeSharp,
 } from "@mui/icons-material";
 
-const NavDrawer = ({ drawerWidth, setMyMode }) => {
+const NavDrawer = ({ drawerWidth, setMyMode, noneOrblock }) => {
   const navigate = useNavigate();
   const theme = useTheme();
   const currentLoc = useLocation();
@@ -33,6 +33,7 @@ const NavDrawer = ({ drawerWidth, setMyMode }) => {
     <div>
       <Drawer
         sx={{
+          display: {xs: noneOrblock, sm: "block"},
           width: `${drawerWidth}px`,
           flexShrink: 0,
           "& .MuiDrawer-paper": {

@@ -1,13 +1,30 @@
-import { Avatar, Link, Typography, Toolbar, AppBar } from "@mui/material";
+import { Menu } from "@mui/icons-material";
+import {
+  Avatar,
+  Link,
+  Typography,
+  Toolbar,
+  AppBar,
+  IconButton,
+} from "@mui/material";
 
-const Appbar = ({ drawerWidth }) => {
+const Appbar = ({ drawerWidth, setNoneOrblock }) => {
   return (
     <div>
       <AppBar
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+        sx={{
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          ml: { xs: 0, sm: `${drawerWidth}px` },
+        }}
         position="static"
       >
         <Toolbar>
+          <IconButton
+            sx={{ display: { sm: "none" } }}
+            onClick={() => {setNoneOrblock("block")}}
+          >
+            <Menu />
+          </IconButton>
           <Link
             sx={{
               flexGrow: 1,
