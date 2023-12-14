@@ -24,30 +24,43 @@ const Root = () => {
         ? {
             // palette values for light mode
             AMGColor: {
-              main: grey[300]
-            }
+              main: grey[300],
+            },
           }
         : {
             // palette values for dark mode
             AMGColor: {
-              main: grey[800]
-            }
+              main: grey[800],
+            },
           }),
     },
   });
 
   const [noneOrblock, setNoneOrblock] = useState("none");
+  const [drawerType, setDrawerType] = useState("permanent");
+
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Appbar setNoneOrblock={setNoneOrblock} drawerWidth={drawerWidth} />
+      <Appbar
+        setDrawerType={setDrawerType}
+        setNoneOrblock={setNoneOrblock}
+        drawerWidth={drawerWidth}
+      />
 
-      <NavDrawer noneOrblock={noneOrblock} setMyMode={setMyMode} drawerWidth={drawerWidth} />
+      <NavDrawer
+        setNoneOrblock={setNoneOrblock}
+        drawerType={drawerType}
+        setDrawerType={setDrawerType}
+        noneOrblock={noneOrblock}
+        setMyMode={setMyMode}
+        drawerWidth={drawerWidth}
+      />
 
       <Box
         component="main"
         sx={{
-          ml: {sm: `${drawerWidth}px`},
+          ml: { sm: `${drawerWidth}px` },
           display: "flex",
           justifyContent: "center",
           mt: "66px",

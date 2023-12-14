@@ -8,7 +8,7 @@ import {
   IconButton,
 } from "@mui/material";
 
-const Appbar = ({ drawerWidth, setNoneOrblock }) => {
+const Appbar = ({ drawerWidth, setNoneOrblock, setDrawerType }) => {
   return (
     <div>
       <AppBar
@@ -20,8 +20,11 @@ const Appbar = ({ drawerWidth, setNoneOrblock }) => {
       >
         <Toolbar>
           <IconButton
-            sx={{ display: { sm: "none" } }}
-            onClick={() => {setNoneOrblock("block")}}
+            sx={{ display: { sm: "none" }, mr: "9px" }}
+            onClick={() => {
+              setDrawerType("temporary");
+              setNoneOrblock("block");
+            }}
           >
             <Menu />
           </IconButton>

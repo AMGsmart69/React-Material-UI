@@ -24,7 +24,14 @@ import {
   PartyModeSharp,
 } from "@mui/icons-material";
 
-const NavDrawer = ({ drawerWidth, setMyMode, noneOrblock }) => {
+const NavDrawer = ({
+  drawerWidth,
+  setMyMode,
+  noneOrblock,
+  drawerType,
+  setNoneOrblock,
+  setDrawerType,
+}) => {
   const navigate = useNavigate();
   const theme = useTheme();
   const currentLoc = useLocation();
@@ -33,7 +40,7 @@ const NavDrawer = ({ drawerWidth, setMyMode, noneOrblock }) => {
     <div>
       <Drawer
         sx={{
-          display: {xs: noneOrblock, sm: "block"},
+          display: { xs: noneOrblock, sm: "block" },
           width: `${drawerWidth}px`,
           flexShrink: 0,
           "& .MuiDrawer-paper": {
@@ -41,8 +48,13 @@ const NavDrawer = ({ drawerWidth, setMyMode, noneOrblock }) => {
             boxSizing: "border-box",
           },
         }}
-        variant="permanent"
+        variant={drawerType}
         anchor="left"
+        open={true}
+        onClose={() => {
+          setDrawerType("permanent");
+          setNoneOrblock("none");
+        }}
       >
         <List>
           <ListItem
@@ -75,7 +87,10 @@ const NavDrawer = ({ drawerWidth, setMyMode, noneOrblock }) => {
             sx={{
               backgroundColor:
                 // @ts-ignore
-                currentLoc.pathname === "/" ? theme.palette.AMGColor.main : null,
+                currentLoc.pathname === "/"
+                  ? // @ts-ignore
+                    theme.palette.AMGColor.main
+                  : null,
             }}
             disablePadding
           >
@@ -97,7 +112,10 @@ const NavDrawer = ({ drawerWidth, setMyMode, noneOrblock }) => {
             sx={{
               backgroundColor:
                 // @ts-ignore
-                currentLoc.pathname === "/create" ? theme.palette.AMGColor.main : null,
+                currentLoc.pathname === "/create"
+                  ? // @ts-ignore
+                    theme.palette.AMGColor.main
+                  : null,
             }}
             disablePadding
           >
