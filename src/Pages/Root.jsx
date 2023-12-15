@@ -24,19 +24,17 @@ const Root = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Appbar
-        setDrawerType={setDrawerType}
-        setNoneOrblock={setNoneOrblock}
-        drawerWidth={drawerWidth}
-      />
+      <Appbar {...{ setDrawerType, setNoneOrblock, drawerWidth }} />
 
       <NavDrawer
-        setNoneOrblock={setNoneOrblock}
-        drawerType={drawerType}
-        setDrawerType={setDrawerType}
-        noneOrblock={noneOrblock}
-        setMyMode={setMyMode}
-        drawerWidth={drawerWidth}
+        {...{
+          setNoneOrblock,
+          drawerType,
+          setDrawerType,
+          noneOrblock,
+          setMyMode,
+          drawerWidth,
+        }}
       />
 
       <Box

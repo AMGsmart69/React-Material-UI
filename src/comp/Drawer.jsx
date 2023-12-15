@@ -1,31 +1,25 @@
 import {
-  Toolbar,
   Drawer,
   Divider,
-  Button,
   useTheme,
   IconButton,
+  Box,
 } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import HomeIcon from "@mui/icons-material/Home";
 import CreateIcon from "@mui/icons-material/Create";
 import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Brightness4,
   Brightness7,
-  Create,
-  Home,
-  NfcSharp,
-  PartyModeSharp,
+  Home
 } from "@mui/icons-material";
-import Settings from "@mui/icons-material/Settings";
 
 const NavDrawer = ({
   drawerWidth,
@@ -47,7 +41,7 @@ const NavDrawer = ({
   ];
 
   return (
-    <div>
+    <Box component="nav">
       <Drawer
         sx={{
           display: { xs: noneOrblock, sm: "block" },
@@ -133,7 +127,7 @@ const NavDrawer = ({
 
         <Divider />
       </Drawer>
-    </div>
+    </Box>
   );
 };
 
