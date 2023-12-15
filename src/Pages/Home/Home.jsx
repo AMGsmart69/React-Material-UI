@@ -10,13 +10,13 @@ const Home = () => {
     fetch("http://localhost:3100/mydata")
       .then((response) => response.json())
       .then((data) => setMyData(data));
-  }, [myData]);
+  }, []);
 
-  let totalPrice = 0
+  let totalPrice = 0;
   return (
     <Box sx={{ width: "330px" }}>
       {myData.map((item) => {
-        totalPrice += item.price
+        totalPrice += item.price;
         return (
           <Paper
             key={item.id}
@@ -52,6 +52,12 @@ const Home = () => {
                 fetch(`http://localhost:3100/mydata/${item.id}`, {
                   method: "DELETE",
                 });
+
+                const newArr = myData.filter((myObject) => {
+                  return myObject.id !== item.id;
+                });
+
+                setMyData(newArr);
               }}
               sx={{ position: "absolute", top: "0", right: "0" }}
             >
