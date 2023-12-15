@@ -1,0 +1,14 @@
+{
+  "mydata": [
+    {
+      "title": "water",
+      "price": 5,
+      "id": 1
+    },
+    {
+      "title": "oil",
+      "price": 45,
+      "id": 2
+    }
+  ]
+}

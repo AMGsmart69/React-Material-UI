@@ -95,6 +95,7 @@ const NavDrawer = ({
           {myList.map((item) => {
             return (
               <ListItem
+                key={item.text}
                 sx={{
                   backgroundColor:
                     // @ts-ignore
